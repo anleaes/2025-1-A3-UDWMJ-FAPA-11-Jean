@@ -1,0 +1,53 @@
+{
+  "especialidades": [
+    {
+      "id": "1",
+      "nome": "Psicólogo",
+      "descricao": "Tratamentos psicológicos e emocionais."
+    }
+  ],
+  "profissionais": [
+    {
+      "id": "1",
+      "nome": "Dra. Ana",
+      "email": "ana@mentalize.com",
+      "telefone": "51999999999"
+    }
+  ],
+  "profissionalEspecialidades": [
+    {
+      "id": "1",
+      "profissionalId": 1,
+      "especialidadeId": 1,
+      "registro_conselho": "CRP12345"
+    }
+  ],
+  "pacientes": [
+    {
+      "id": "1",
+      "nome": "Testes",
+      "cpf": "00011122233",
+      "data_nasc": "2009-02-05"
+    },
+    {
+      "id": "359e",
+      "nome": "Marselo Morais",
+      "cpf": "11122233344",
+      "data_nasc": "2004-09-14"
+    }
+  ],
+  "atendimentos": [
+    {
+      "id": "1",
+      "data": "2024-10-01",
+      "descricao": "Primeira sessão",
+      "status": "realizado",
+      "profissionalId": 1,
+      "pacienteId": 1
+    }
+  ],
+  "prescricoes": [],
+  "medicamentos": [],
+  "medicamentoItens": [],
+  "categorias": []
+}
