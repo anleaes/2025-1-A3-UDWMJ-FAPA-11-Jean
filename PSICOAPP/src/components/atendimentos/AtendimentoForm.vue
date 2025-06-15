@@ -13,7 +13,7 @@
       <input v-model="formData.status" type="text" required />
 
       <button type="submit">Salvar</button>
-      <button type="button" @click="limparCampos">Limpar Campos</button>
+      <button type="button" @click="limparCampos">Limpar</button>
     </form>
   </section>
 </template>
@@ -67,9 +67,34 @@ form {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
 }
 
 button {
-  margin-top: 5px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
+
+button[type="submit"] {
+  background-color: #4CAF50; /* Verde para salvar */
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+button[type="button"] {
+  background-color: #2196F3; /* Azul claro para limpar */
+}
+
+button[type="button"]:hover {
+  background-color: #1976D2; /* Azul escuro no hover */
+}
+
 </style>

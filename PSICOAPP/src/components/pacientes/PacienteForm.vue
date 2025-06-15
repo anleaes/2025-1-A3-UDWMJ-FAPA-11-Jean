@@ -40,42 +40,38 @@ export default {
 </script>
 
 <style scoped>
-.form-container {
-  background-color: #f1f8ff;
-  padding: 20px;
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #f9f9f9;
+  padding: 15px;
   border-radius: 8px;
-  margin-bottom: 20px;
 }
 
-form label {
-  display: block;
-  margin-top: 10px;
-}
-
-form input {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
-form button {
-  margin-top: 10px;
-  margin-right: 10px;
-  padding: 8px 16px;
+button {
+  padding: 10px;
   border: none;
-  border-radius: 6px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
   cursor: pointer;
 }
 
-form button[type="submit"] {
-  background-color: #4CAF50;
-  color: white;
+button[type="submit"] {
+  background-color: #4CAF50; /* Verde para salvar */
 }
 
-form button[type="button"] {
-  background-color: #f44336;
-  color: white;
+button[type="submit"]:hover {
+  background-color: #45a049;
 }
+
+button[type="button"] {
+  background-color: #2196F3; /* Azul claro para limpar */
+}
+
+button[type="button"]:hover {
+  background-color: #1976D2; /* Azul escuro no hover */
+}
+
 </style>

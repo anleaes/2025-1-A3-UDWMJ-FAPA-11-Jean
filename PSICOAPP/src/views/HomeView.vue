@@ -9,8 +9,10 @@
       <router-link to="/profissionais" class="nav-link">👩‍⚕️ Profissionais</router-link>
       <router-link to="/pacientes" class="nav-link">🧑 Pacientes</router-link>
       <router-link to="/especialidades" class="nav-link">📚 Especialidades</router-link>
+      <router-link to="/categorias" class="nav-link">📅 Categorias</router-link>
       <router-link to="/medicamentos" class="nav-link">💊 Medicamentos</router-link>
       <router-link to="/atendimentos" class="nav-link">📅 Atendimentos</router-link>
+      
     </nav>
   </main>
 </template>

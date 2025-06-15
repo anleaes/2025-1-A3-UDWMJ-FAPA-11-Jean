@@ -5,12 +5,14 @@ import ProfissionalView from '@/views/ProfissionalView.vue';
 import EspecialidadeView from '@/views/EspecialidadeView.vue';
 import AtendimentoView from '@/views/AtendimentoView.vue';
 import MedicamentoView from '@/views/MedicamentoView.vue';
+import CategoriaView from '@/views/CategoriaView.vue';
 
 const routes = [
   { path: '/', name: 'home', component: HomeView },
   { path: '/pacientes', name: 'pacientes', component: PacienteView },
   { path: '/profissionais', name: 'profissionais', component: ProfissionalView },
   { path: '/especialidades', name: 'especialidades', component: EspecialidadeView },
+  { path: '/categorias', name: 'categorias', component: CategoriaView },
   { path: '/atendimentos', name: 'atendimentos', component: AtendimentoView }, 
   { path: '/medicamentos', name: 'medicamentos', component: MedicamentoView }, 
 ];
