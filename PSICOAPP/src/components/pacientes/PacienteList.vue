@@ -25,9 +25,19 @@
   </table>
 </template>
 
+
 <script>
 export default {
-  props: ['pacientes']
+  props: ['pacientes'],
+  emits: ['editar', 'excluir'],
+  methods: {
+    editar(paciente) {
+      this.$emit('editar', paciente);
+    },
+    excluir(id) {
+      this.$emit('excluir', id);
+    }
+  }
 }
 </script>
 
