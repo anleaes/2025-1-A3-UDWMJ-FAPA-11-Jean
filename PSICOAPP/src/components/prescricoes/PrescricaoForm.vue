@@ -1,96 +1,57 @@
 <template>
   <section class="form-section">
     <h2>{{ prescricaoInterna.id ? 'Editar Prescrição' : 'Nova Prescrição' }}</h2>
-
     <form @submit.prevent="salvar">
-      <label>Descrição:</label>
-      <input v-model="prescricaoInterna.descricao" type="text" required />
-
-      <h3>Itens da Prescrição:</h3>
-      <ul>
-        <li v-for="(item, index) in prescricaoInterna.itens" :key="index">
-          {{ getNomeMedicamento(item.medicamentoId) }} - Quantidade: {{ item.quantidade }}
-          <button type="button" @click="removerItem(index)">Remover</button>
-        </li>
-      </ul>
-
-      <label>Medicamento:</label>
-      <select v-model="novoItem.medicamentoId" required>
-        <option value="" disabled>Selecione um medicamento</option>
-        <option v-for="med in medicamentos" :key="med.id" :value="med.id">
-          {{ med.nome }}
+      <label>Atendimento:</label>
+      <select v-model="prescricaoInterna.atendimentoId" required>
+        <option v-for="at in atendimentos" :key="at.id" :value="at.id">
+          Atendimento #{{ at.id }} - {{ at.descricao }}
         </option>
       </select>
 
-      <label>Quantidade:</label>
-      <input v-model.number="novoItem.quantidade" type="number" min="1" required />
+      <label>Data:</label>
+      <input v-model="prescricaoInterna.data" type="date" required />
 
-      <button type="button" @click="adicionarItem">Adicionar Item</button>
-
-      <div style="margin-top: 10px;">
-        <button type="submit">Salvar Prescrição</button>
-        <button type="button" @click="limpar">Limpar</button>
-      </div>
+      <button type="submit">Salvar</button>
+      <button type="button" @click="limpar">Limpar</button>
     </form>
   </section>
 </template>
 
 <script>
-import axios from 'axios';
+import atendimentoService from '@/services/atendimentoService';
 
 export default {
   props: ['prescricao'],
   emits: ['salvar'],
   data() {
     return {
-      prescricaoInterna: this.prescricao
-        ? { ...this.prescricao, itens: this.prescricao.itens || [] }
-        : { descricao: '', itens: [] },
-      novoItem: {
-        medicamentoId: '',
-        quantidade: 1
-      },
-      medicamentos: []
+      prescricaoInterna: this.prescricao ? { ...this.prescricao } : { atendimentoId: null, data: '' },
+      atendimentos: []
     };
+  },
+  created() {
+    this.carregarAtendimentos();
   },
   watch: {
     prescricao(newVal) {
-      this.prescricaoInterna = newVal
-        ? { ...newVal, itens: newVal.itens || [] }
-        : { descricao: '', itens: [] };
+      this.prescricaoInterna = newVal ? { ...newVal } : { atendimentoId: null, data: '' };
     }
   },
-  created() {
-    this.carregarMedicamentos();
-  },
   methods: {
-    async carregarMedicamentos() {
-      const response = await axios.get('http://localhost:3000/medicamentos');
-      this.medicamentos = response.data;
-    },
-    getNomeMedicamento(id) {
-      const med = this.medicamentos.find(m => m.id == id);
-      return med ? med.nome : 'Medicamento desconhecido';
-    },
-    adicionarItem() {
-      if (this.novoItem.medicamentoId && this.novoItem.quantidade > 0) {
-        this.prescricaoInterna.itens.push({ ...this.novoItem });
-        this.novoItem = { medicamentoId: '', quantidade: 1 };
-      }
-    },
-    removerItem(index) {
-      this.prescricaoInterna.itens.splice(index, 1);
+    async carregarAtendimentos() {
+      this.atendimentos = await atendimentoService.getAll();
     },
     salvar() {
       this.$emit('salvar', this.prescricaoInterna);
     },
     limpar() {
-      this.prescricaoInterna = { descricao: '', itens: [] };
-      this.novoItem = { medicamentoId: '', quantidade: 1 };
+      this.prescricaoInterna = { atendimentoId: null, data: '' };
     }
   }
 };
 </script>
+
 
 <style scoped>
 form {

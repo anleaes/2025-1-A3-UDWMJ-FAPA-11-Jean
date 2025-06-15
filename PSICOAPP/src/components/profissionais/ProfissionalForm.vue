@@ -1,88 +1,63 @@
 <template>
-  <section>
-    <h2>{{ form.id ? 'Editar Profissional' : 'Novo Profissional' }}</h2>
+  <section class="form-section">
+    <h2>{{ profissionalInterno.id ? 'Editar Profissional' : 'Novo Profissional' }}</h2>
     <form @submit.prevent="salvar">
       <label>Nome:</label>
-      <input v-model="form.nome" required>
+      <input v-model="profissionalInterno.nome" type="text" required />
 
       <label>Email:</label>
-      <input v-model="form.email" type="email" required>
+      <input v-model="profissionalInterno.email" type="email" required />
 
       <label>Telefone:</label>
-      <input v-model="form.telefone" required>
+      <input v-model="profissionalInterno.telefone" type="text" required />
+
+      <label>Especialidade:</label>
+      <select v-model="profissionalInterno.especialidadeId" required>
+        <option v-for="esp in especialidades" :key="esp.id" :value="esp.id">
+          {{ esp.nome }}
+        </option>
+      </select>
 
       <button type="submit">Salvar</button>
+      <button type="button" @click="limpar">Limpar</button>
     </form>
   </section>
 </template>
 
-
 <script>
+import especialidadeService from '@/services/especialidadeService';
+
 export default {
-  props: {
-    profissional: {
-      type: Object,
-      default: () => ({
-        nome: '',
-        email: '',
-        telefone: ''
-      })
-    }
-  },
+  props: ['profissional'],
+  emits: ['salvar'],
   data() {
     return {
-      form: { ...this.profissional }  
+      profissionalInterno: this.profissional ? { ...this.profissional } : { nome: '', email: '', telefone: '', especialidadeId: null },
+      especialidades: []
     };
   },
+  created() {
+    this.carregarEspecialidades();
+  },
   watch: {
-    profissional: {
-      handler(novo) {
-        this.form = { ...novo };
-      },
-      deep: true,
-      immediate: true
+    profissional(newVal) {
+      this.profissionalInterno = newVal ? { ...newVal } : { nome: '', email: '', telefone: '', especialidadeId: null };
     }
   },
   methods: {
+    async carregarEspecialidades() {
+      this.especialidades = await especialidadeService.getAll();
+    },
     salvar() {
-      this.$emit('salvar', { ...this.form });
+      this.$emit('salvar', this.profissionalInterno);
+    },
+    limpar() {
+      this.profissionalInterno = { nome: '', email: '', telefone: '', especialidadeId: null };
     }
   }
-}
+};
 </script>
+
 <style>
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background-color: #f9f9f9;
-  padding: 15px;
-  border-radius: 8px;
-}
-
-button {
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-button[type="submit"] {
-  background-color: #4CAF50; /* Verde para salvar */
-}
-
-button[type="submit"]:hover {
-  background-color: #45a049;
-}
-
-button[type="button"] {
-  background-color: #2196F3; /* Azul claro para limpar */
-}
-
-button[type="button"]:hover {
-  background-color: #1976D2; /* Azul escuro no hover */
-}
 
 </style>

@@ -8,6 +8,13 @@
       <label>Descrição:</label>
       <input v-model="medicamentoInterno.descricao" type="text" required />
 
+      <label>Categoria:</label>
+      <select v-model="medicamentoInterno.categoriaId" required>
+        <option v-for="cat in categorias" :key="cat.id" :value="cat.id">
+          {{ cat.nome }}
+        </option>
+      </select>
+
       <button type="submit">Salvar</button>
       <button type="button" @click="limpar">Limpar</button>
     </form>
@@ -15,29 +22,43 @@
 </template>
 
 <script>
+import categoriaService from '@/services/categoriaService';
+
 export default {
   props: ['medicamento'],
   emits: ['salvar'],
   data() {
     return {
-      medicamentoInterno: this.medicamento ? { ...this.medicamento } : { nome: '', descricao: '' }
+      medicamentoInterno: this.medicamento
+        ? { ...this.medicamento }
+        : { nome: '', descricao: '', categoriaId: null },
+      categorias: []
     };
+  },
+  created() {
+    this.carregarCategorias();
   },
   watch: {
     medicamento(newVal) {
-      this.medicamentoInterno = newVal ? { ...newVal } : { nome: '', descricao: '' };
+      this.medicamentoInterno = newVal
+        ? { ...newVal }
+        : { nome: '', descricao: '', categoriaId: null };
     }
   },
   methods: {
+    async carregarCategorias() {
+      this.categorias = await categoriaService.getAll();
+    },
     salvar() {
       this.$emit('salvar', this.medicamentoInterno);
     },
     limpar() {
-      this.medicamentoInterno = { nome: '', descricao: '' };
+      this.medicamentoInterno = { nome: '', descricao: '', categoriaId: null };
     }
   }
 };
 </script>
+
 
 <style>
 form {

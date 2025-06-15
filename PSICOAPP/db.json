@@ -6,14 +6,7 @@
       "descricao": "Tratamentos psicológicos e emociona"
     }
   ],
-  "profissionais": [
-    {
-      "id": "362d",
-      "nome": "NICOLAS DOS SANTOS INVENINATO",
-      "email": "nicolasdossinveninato@gmail.com",
-      "telefone": "51996992005"
-    }
-  ],
+  "profissionais": [],
   "profissionalEspecialidades": [
     {
       "id": "1",
