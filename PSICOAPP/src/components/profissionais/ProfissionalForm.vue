@@ -31,7 +31,7 @@ export default {
   },
   data() {
     return {
-      form: { ...this.profissional }  // Cria uma cópia local para edição
+      form: { ...this.profissional }  
     };
   },
   watch: {
