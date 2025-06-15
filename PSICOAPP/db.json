@@ -47,7 +47,13 @@
     }
   ],
   "prescricoes": [],
-  "medicamentos": [],
+  "medicamentos": [
+    {
+      "id": "a028",
+      "nome": "Zolpidem",
+      "descricao": "O hemitartarato de zolpidem é indicado ao tratamo de curta duração da insônia (dificuldade para dormir) que pode ser ocasional (eventual), transitória (passageira) ou crônica (que dura há muito tempo)."
+    }
+  ],
   "medicamentoItens": [],
   "categorias": []
 }

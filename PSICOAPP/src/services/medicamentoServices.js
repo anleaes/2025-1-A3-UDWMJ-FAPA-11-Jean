@@ -18,4 +18,4 @@ export default {
   delete(id) {
     return axios.delete(`${API_URL}/${id}`);
   }
-};
+}

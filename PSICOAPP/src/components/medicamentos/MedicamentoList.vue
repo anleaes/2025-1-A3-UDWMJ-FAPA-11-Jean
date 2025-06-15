@@ -52,4 +52,9 @@ button:nth-of-type(2) {
   background-color: #e74c3c; /* Vermelho para o Excluir */
   color: white;
 }
+<<<<<<< HEAD
 </style>
+=======
+</style>
+
+>>>>>>> 800421fe57f966ad5878f52cb45bde32165ff987
