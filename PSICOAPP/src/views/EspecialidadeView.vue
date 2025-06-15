@@ -1,27 +1,65 @@
 <template>
-  <div class="container">
-    <h2>Lista de Especialidades</h2>
-    <router-link to="/especialidades/novo" class="btn btn-success mb-3">
-      <i class="fas fa-plus"></i> Nova Especialidade
-    </router-link>
+  <main>
+    <section>
+      <router-link to="/">← Voltar para o Início</router-link>
+    </section>
 
-    <EspecialidadeList />
-  </div>
+    <h1>Gerenciamento de Especialidades</h1>
+
+    <EspecialidadeForm
+      :especialidade="especialidadeSelecionada"
+      @salvar="salvarEspecialidade"
+    />
+
+    <EspecialidadeList
+      :especialidades="especialidades"
+      @editar="selecionarEspecialidade"
+      @excluir="excluirEspecialidade"
+    />
+  </main>
 </template>
 
 <script>
-import EspecialidadeList from '@/components/especialidade/EspecialidadeList.vue';
+import EspecialidadeForm from '@/components/especialidades/EspecialidadeForm.vue';
+import EspecialidadeList from '@/components/especialidades/EspecialidadeList.vue';
+import especialidadeService from '@/services/especialidadeService';
 
 export default {
-  name: 'EspecialidadeView',
   components: {
-    EspecialidadeList,
+    EspecialidadeForm,
+    EspecialidadeList
   },
+  data() {
+    return {
+      especialidades: [],
+      especialidadeSelecionada: null
+    };
+  },
+  created() {
+    this.carregarEspecialidades();
+  },
+  methods: {
+    async carregarEspecialidades() {
+      this.especialidades = await especialidadeService.getAll();
+    },
+    async salvarEspecialidade(especialidade) {
+      if (especialidade.id) {
+        await especialidadeService.update(especialidade.id, especialidade);
+      } else {
+        await especialidadeService.create(especialidade);
+      }
+      this.especialidadeSelecionada = null;
+      this.carregarEspecialidades();
+    },
+    selecionarEspecialidade(especialidade) {
+      this.especialidadeSelecionada = { ...especialidade };
+    },
+    async excluirEspecialidade(id) {
+      if (confirm('Deseja excluir esta especialidade?')) {
+        await especialidadeService.delete(id);
+        this.carregarEspecialidades();
+      }
+    }
+  }
 };
 </script>
-
-<style scoped>
-.container {
-  padding: 20px;
-}
-</style>

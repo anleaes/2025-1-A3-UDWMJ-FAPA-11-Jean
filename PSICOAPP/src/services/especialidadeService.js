@@ -3,23 +3,19 @@ import axios from 'axios';
 const API_URL = 'http://localhost:3000/especialidades';
 
 export default {
-  getAllEspecialidades() {
-    return axios.get(API_URL);
+  getAll() {
+    return axios.get(API_URL).then(res => res.data);
   },
-
-  getEspecialidade(id) {
-    return axios.get(`${API_URL}/${id}`);
+  getById(id) {
+    return axios.get(`${API_URL}/${id}`).then(res => res.data);
   },
-
-  createEspecialidade(especialidade) {
+  create(especialidade) {
     return axios.post(API_URL, especialidade);
   },
-
-  updateEspecialidade(id, especialidade) {
+  update(id, especialidade) {
     return axios.put(`${API_URL}/${id}`, especialidade);
   },
-
-  deleteEspecialidade(id) {
+  delete(id) {
     return axios.delete(`${API_URL}/${id}`);
   }
 };

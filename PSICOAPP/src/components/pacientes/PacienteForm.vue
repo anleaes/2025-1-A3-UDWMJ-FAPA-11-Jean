@@ -1,17 +1,20 @@
-
 <template>
-  <form @submit.prevent="handleSubmit" class="paciente-form">
-    <label for="nome">Nome</label>
-    <input type="text" id="nome" v-model="form.nome" required />
+  <section class="form-container">
+    <h2>{{ paciente.id ? 'Editar Paciente' : 'Novo Paciente' }}</h2>
+    <form @submit.prevent="salvar">
+      <label>Nome:</label>
+      <input v-model="paciente.nome" type="text" required />
 
-    <label for="cpf">CPF</label>
-    <input type="text" id="cpf" v-model="form.cpf" required />
+      <label>CPF:</label>
+      <input v-model="paciente.cpf" type="text" required />
 
-    <label for="data_nasc">Data de Nascimento</label>
-    <input type="text" id="data_nasc" v-model="form.data_nasc" required />
+      <label>Data de Nascimento:</label>
+      <input v-model="paciente.data_nasc" type="date" required />
 
-    <button type="submit" class="btn-salvar">Salvar</button>
-  </form>
+      <button type="submit">Salvar</button>
+      <button type="button" @click="limparCampos">Limpar</button>
+    </form>
+  </section>
 </template>
 
 <script>
@@ -22,60 +25,57 @@ export default {
       default: () => ({ nome: '', cpf: '', data_nasc: '' })
     }
   },
-  data() {
-    return {
-      form: { ...this.paciente }
-    }
-  },
+  emits: ['salvar', 'limpar'],
   methods: {
-    handleSubmit() {
-      this.$emit('salvar', this.form)
-      this.form = { nome: '', cpf: '', data_nasc: '' }
-    }
-  },
-  watch: {
-    paciente(novo) {
-      this.form = { ...novo }
+    salvar() {
+      this.$emit('salvar', this.paciente);
+    },
+    limparCampos() {
+      this.paciente.nome = '';
+      this.paciente.cpf = '';
+      this.paciente.data_nasc = '';
     }
   }
-}
+};
 </script>
 
 <style scoped>
-.paciente-form {
-  display: flex;
-  flex-direction: column;
-  max-width: 400px;
-  gap: 12px;
-  background-color: #eaf6f9;
+.form-container {
+  background-color: #f1f8ff;
   padding: 20px;
-  border: 1px solid #b0c4de;
-  border-radius: 6px;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
-.paciente-form label {
-  font-weight: bold;
-  color: #2c3e50;
+form label {
+  display: block;
+  margin-top: 10px;
 }
 
-.paciente-form input {
+form input {
+  width: 100%;
   padding: 8px;
-  border: 1px solid #b0c4de;
+  margin-top: 5px;
   border-radius: 4px;
-  font-size: 14px;
+  border: 1px solid #ccc;
 }
 
-.btn-salvar {
-  background-color: #3498db;
-  color: white;
-  padding: 10px;
-  font-weight: bold;
+form button {
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 8px 16px;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
 }
 
-.btn-salvar:hover {
-  background-color: #2980b9;
+form button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+}
+
+form button[type="button"] {
+  background-color: #f44336;
+  color: white;
 }
 </style>

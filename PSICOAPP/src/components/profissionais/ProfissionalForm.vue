@@ -1,51 +1,54 @@
 <template>
-  <div>
-    <h2>{{ isEdit ? 'Editar' : 'Novo' }} Profissional</h2>
-    <form @submit.prevent="salvarProfissional">
-      <input v-model="profissional.nome" placeholder="Nome" required />
-      <input v-model="profissional.email" placeholder="Email" required />
-      <input v-model="profissional.telefone" placeholder="Telefone" required />
+  <section>
+    <h2>{{ form.id ? 'Editar Profissional' : 'Novo Profissional' }}</h2>
+    <form @submit.prevent="salvar">
+      <label>Nome:</label>
+      <input v-model="form.nome" required>
+
+      <label>Email:</label>
+      <input v-model="form.email" type="email" required>
+
+      <label>Telefone:</label>
+      <input v-model="form.telefone" required>
+
       <button type="submit">Salvar</button>
     </form>
-  </div>
+  </section>
 </template>
 
-<script>
-import ProfissionalService from '@/services/ProfissionalService';
 
+<script>
 export default {
-  data() {
-    return {
-      profissional: {
+  props: {
+    profissional: {
+      type: Object,
+      default: () => ({
         nome: '',
         email: '',
         telefone: ''
-      },
-      isEdit: false
+      })
+    }
+  },
+  data() {
+    return {
+      form: { ...this.profissional }  // Cria uma cópia local para edição
     };
   },
-  methods: {
-    salvarProfissional() {
-      if (this.isEdit) {
-        ProfissionalService.atualizar(this.$route.params.id, this.profissional)
-          .then(() => this.$router.push('/profissionais'));
-      } else {
-        ProfissionalService.criar(this.profissional)
-          .then(() => this.$router.push('/profissionais'));
-      }
-    },
-    carregarProfissional() {
-      ProfissionalService.buscarPorId(this.$route.params.id)
-        .then(response => {
-          this.profissional = response.data;
-          this.isEdit = true;
-        });
+  watch: {
+    profissional: {
+      handler(novo) {
+        this.form = { ...novo };
+      },
+      deep: true,
+      immediate: true
     }
   },
-  mounted() {
-    if (this.$route.params.id) {
-      this.carregarProfissional();
+  methods: {
+    salvar() {
+      this.$emit('salvar', { ...this.form });
     }
   }
-};
+}
 </script>
+<style>
+</style>

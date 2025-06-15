@@ -1,40 +1,35 @@
 <template>
-  <div>
+  <section>
     <h2>Lista de Profissionais</h2>
-    <router-link to="/profissionais/novo">Adicionar Profissional</router-link>
     <ul>
-      <li v-for="prof in profissionais" :key="prof.id">
-        {{ prof.nome }} - {{ prof.email }}
-        <router-link :to="`/profissionais/editar/${prof.id}`">Editar</router-link>
-        <button @click="excluirProfissional(prof.id)">Excluir</button>
+      <li v-for="profissional in profissionais" :key="profissional.id">
+        <span>{{ profissional.nome }} - {{ profissional.email }} - {{ profissional.telefone }}</span>
+        <button @click="$emit('editar', profissional)">Editar</button>
+        <button @click="$emit('excluir', profissional.id)">Excluir</button>
       </li>
     </ul>
-  </div>
+  </section>
 </template>
 
 <script>
-import ProfissionalService from '@/services/ProfissionalService';
-
 export default {
-  data() {
-    return {
-      profissionais: []
-    };
-  },
-  methods: {
-    carregarProfissionais() {
-      ProfissionalService.listar().then(response => {
-        this.profissionais = response.data;
-      });
-    },
-    excluirProfissional(id) {
-      ProfissionalService.excluir(id).then(() => {
-        this.carregarProfissionais();
-      });
-    }
-  },
-  mounted() {
-    this.carregarProfissionais();
-  }
+  props: ['profissionais'],
+  emits: ['editar', 'excluir']
 };
 </script>
+<style>
+ul li {
+  background-color: #f1f1f1;
+  color: #333; 
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul li span {
+  flex-grow: 1;
+}
+</style>

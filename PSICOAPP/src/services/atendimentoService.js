@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/profissionais';
+const API_URL = 'http://localhost:3000/atendimentos';
 
 export default {
   getAll() {
@@ -9,11 +9,11 @@ export default {
   getById(id) {
     return axios.get(`${API_URL}/${id}`).then(res => res.data);
   },
-  create(profissional) {
-    return axios.post(API_URL, profissional);
+  create(atendimento) {
+    return axios.post(API_URL, atendimento);
   },
-  update(id, profissional) {
-    return axios.put(`${API_URL}/${id}`, profissional);
+  update(id, atendimento) {
+    return axios.put(`${API_URL}/${id}`, atendimento);
   },
   delete(id) {
     return axios.delete(`${API_URL}/${id}`);

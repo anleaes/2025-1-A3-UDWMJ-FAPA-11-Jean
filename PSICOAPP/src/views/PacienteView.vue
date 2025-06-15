@@ -1,12 +1,20 @@
-<!-- src/views/PacienteView.vue -->
 <template>
   <main>
-    <router-link to="/" class="btn-voltar">⬅ Voltar para o Início</router-link>
+    <section class="text-center mt-3">
+      <router-link to="/" class="btn btn-primary">← Voltar para o Início</router-link>
+    </section>
+
     <h1>Gerenciamento de Pacientes</h1>
 
+    <button @click="pacienteSelecionado = { nome: '', cpf: '', data_nasc: '' }" class="btn-adicionar">
+      Novo Paciente
+    </button>
+
     <PacienteForm
+      v-if="pacienteSelecionado"
       :paciente="pacienteSelecionado"
       @salvar="salvarPaciente"
+      @limpar="pacienteSelecionado = null"
     />
 
     <PacienteList
@@ -20,13 +28,10 @@
 <script>
 import PacienteForm from '@/components/pacientes/PacienteForm.vue'
 import PacienteList from '@/components/pacientes/PacienteList.vue'
-import pacienteService from '@/services/pacienteServices'
+import pacienteService from '@/services/pacienteService'
 
 export default {
-  components: {
-    PacienteForm,
-    PacienteList
-  },
+  components: { PacienteForm, PacienteList },
   data() {
     return {
       pacientes: [],
@@ -63,30 +68,16 @@ export default {
 </script>
 
 <style scoped>
-.btn-voltar {
-  display: inline-block;
+.btn-adicionar {
   margin-bottom: 20px;
   padding: 8px 16px;
-  background-color: #8cc5eb;
+  background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+  cursor: pointer;
 }
-
-.btn-voltar:hover {
-  background-color: #92c9ee;
-}
-
-main {
-  background-color: rgb(178, 233, 247);
-  padding: 20px;
-  max-width: 800px;
-  margin: auto;
-}
-h1{
-  color: rgb(56, 55, 55)
+.btn-adicionar:hover {
+  background-color: #45a049;
 }
 </style>
