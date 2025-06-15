@@ -4,6 +4,7 @@ import PacienteView from '@/views/PacienteView.vue';
 import ProfissionalView from '@/views/ProfissionalView.vue';
 import EspecialidadeView from '@/views/EspecialidadeView.vue';
 import AtendimentoView from '@/views/AtendimentoView.vue';
+import MedicamentoView from '@/views/MedicamentoView.vue';
 
 const routes = [
   { path: '/', name: 'home', component: HomeView },
@@ -11,6 +12,7 @@ const routes = [
   { path: '/profissionais', name: 'profissionais', component: ProfissionalView },
   { path: '/especialidades', name: 'especialidades', component: EspecialidadeView },
   { path: '/atendimentos', name: 'atendimentos', component: AtendimentoView }, 
+  { path: '/medicamentos', name: 'medicamentos', component: MedicamentoView }, 
 ];
 
 const router = createRouter({
