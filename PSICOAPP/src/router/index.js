@@ -6,6 +6,8 @@ import EspecialidadeView from '@/views/EspecialidadeView.vue';
 import AtendimentoView from '@/views/AtendimentoView.vue';
 import MedicamentoView from '@/views/MedicamentoView.vue';
 import CategoriaView from '@/views/CategoriaView.vue';
+import PrescricaoView from '@/views/PrescricaoView.vue';
+
 
 const routes = [
   { path: '/', name: 'home', component: HomeView },
@@ -15,6 +17,8 @@ const routes = [
   { path: '/categorias', name: 'categorias', component: CategoriaView },
   { path: '/atendimentos', name: 'atendimentos', component: AtendimentoView }, 
   { path: '/medicamentos', name: 'medicamentos', component: MedicamentoView }, 
+  { path: '/prescricoes', name: 'prescricoes', component: PrescricaoView },
+
 ];
 
 const router = createRouter({

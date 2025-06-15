@@ -12,6 +12,7 @@
       <router-link to="/categorias" class="nav-link">📅 Categorias</router-link>
       <router-link to="/medicamentos" class="nav-link">💊 Medicamentos</router-link>
       <router-link to="/atendimentos" class="nav-link">📅 Atendimentos</router-link>
+      <router-link to="/prescricoes" class="nav-link">💊 Prescricoes</router-link>
       
     </nav>
   </main>

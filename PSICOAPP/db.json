@@ -55,5 +55,11 @@
     }
   ],
   "medicamentoItens": [],
-  "categorias": []
+  "categorias": [
+    {
+      "id": "f20e",
+      "nome": "Tarja Preta",
+      "descricao": "medicamento tarja preta"
+    }
+  ]
 }
