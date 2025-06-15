@@ -76,8 +76,4 @@ main {
 h1 {
   color: rgb(56, 55, 55);
 }
-<<<<<<< HEAD
 </style>
-=======
-</style>
->>>>>>> 800421fe57f966ad5878f52cb45bde32165ff987

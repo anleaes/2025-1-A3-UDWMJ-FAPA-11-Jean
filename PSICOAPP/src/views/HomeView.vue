@@ -54,8 +54,4 @@ header p {
 .nav-link:hover {
   background-color: #45a049;
 }
-<<<<<<< HEAD
 </style>
-=======
-</style>
->>>>>>> 800421fe57f966ad5878f52cb45bde32165ff987

@@ -11,23 +11,9 @@
   </section>
 </template>
 
-
 <script>
 export default {
   props: ['pacientes'],
-<<<<<<< HEAD
   emits: ['editar', 'excluir']
 };
-=======
-  emits: ['editar', 'excluir'],
-  methods: {
-    editar(paciente) {
-      this.$emit('editar', paciente);
-    },
-    excluir(id) {
-      this.$emit('excluir', id);
-    }
-  }
-}
->>>>>>> 800421fe57f966ad5878f52cb45bde32165ff987
 </script>
