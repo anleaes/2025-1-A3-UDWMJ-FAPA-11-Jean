@@ -63,27 +63,5 @@ export default {
 };
 </script>
 
-<style scoped>
-main {
-  background-color: #b2e9f7;
-  padding: 20px;
-  max-width: 800px;
-  margin: auto;
-}
-h1 {
-  color: rgb(56, 55, 55);
-}
-.btn-voltar {
-  background-color: #8cc5eb;
-  color: white;
-  padding: 8px 16px;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  display: inline-block;
-}
-.btn-voltar:hover {
-  background-color: #92c9ee;
-}
+<style>
 </style>

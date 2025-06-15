@@ -67,17 +67,5 @@ export default {
 }
 </script>
 
-<style scoped>
-.btn-adicionar {
-  margin-bottom: 20px;
-  padding: 8px 16px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-.btn-adicionar:hover {
-  background-color: #45a049;
-}
+<style>
 </style>

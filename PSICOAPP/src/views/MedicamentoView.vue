@@ -66,14 +66,5 @@ export default {
 };
 </script>
 
-<style scoped>
-main {
-  background-color: rgb(178, 233, 247);
-  padding: 20px;
-  max-width: 800px;
-  margin: auto;
-}
-h1 {
-  color: rgb(56, 55, 55);
-}
+<style>
 </style>

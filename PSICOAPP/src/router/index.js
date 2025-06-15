@@ -7,6 +7,7 @@ import AtendimentoView from '@/views/AtendimentoView.vue';
 import MedicamentoView from '@/views/MedicamentoView.vue';
 import CategoriaView from '@/views/CategoriaView.vue';
 import PrescricaoView from '@/views/PrescricaoView.vue';
+import ProntuarioView from '@/views/ProntuarioView.vue';
 
 
 const routes = [
@@ -18,6 +19,7 @@ const routes = [
   { path: '/atendimentos', name: 'atendimentos', component: AtendimentoView }, 
   { path: '/medicamentos', name: 'medicamentos', component: MedicamentoView }, 
   { path: '/prescricoes', name: 'prescricoes', component: PrescricaoView },
+   { path: '/prontuarios', name: 'prontuarios', component: ProntuarioView },
 
 ];
 

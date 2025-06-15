@@ -6,7 +6,15 @@
       "descricao": "Tratamentos psicológicos e emociona"
     }
   ],
-  "profissionais": [],
+  "profissionais": [
+    {
+      "id": "a112",
+      "nome": "Medico",
+      "email": "med@hp.gov.br",
+      "telefone": "001223345566",
+      "especialidadeId": "1"
+    }
+  ],
   "profissionalEspecialidades": [
     {
       "id": "1",
@@ -39,7 +47,20 @@
       "pacienteId": 1
     }
   ],
-  "prescricoes": [],
+  "prescricoes": [
+    {
+      "id": "5fea",
+      "atendimentoId": "1",
+      "data": "2025-01-10",
+      "observacoes": "erfwefwefwefwe",
+      "itens": [
+        {
+          "medicamentoId": "a028",
+          "quantidade": 1
+        }
+      ]
+    }
+  ],
   "medicamentos": [
     {
       "id": "a028",
@@ -53,6 +74,16 @@
       "id": "f20e",
       "nome": "Tarja Preta",
       "descricao": "medicamento tarja preta"
+    }
+  ],
+  "prontuarios": [
+    {
+      "id": "0528",
+      "pacienteId": "359e",
+      "observacoes": "teste",
+      "prescricaoIds": [
+        "5fea"
+      ]
     }
   ]
 }

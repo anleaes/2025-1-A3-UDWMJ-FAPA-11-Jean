@@ -8,11 +8,13 @@
 
     <ProfissionalForm
       :profissional="profissionalSelecionado"
+      :especialidades="especialidades"
       @salvar="salvarProfissional"
     />
 
     <ProfissionalList
       :profissionais="profissionais"
+      :especialidadesMap="especialidadesMap"
       @editar="selecionarProfissional"
       @excluir="excluirProfissional"
     />
@@ -23,6 +25,7 @@
 import ProfissionalForm from '@/components/profissionais/ProfissionalForm.vue';
 import ProfissionalList from '@/components/profissionais/ProfissionalList.vue';
 import profissionalService from '@/services/profissionalService';
+import especialidadeService from '@/services/especialidadeService';
 
 export default {
   components: {
@@ -32,15 +35,29 @@ export default {
   data() {
     return {
       profissionais: [],
+      especialidades: [],
       profissionalSelecionado: null
     };
   },
+  computed: {
+    especialidadesMap() {
+      const map = {};
+      this.especialidades.forEach(e => {
+        map[e.id] = e.nome;
+      });
+      return map;
+    }
+  },
   created() {
     this.carregarProfissionais();
+    this.carregarEspecialidades();
   },
   methods: {
     async carregarProfissionais() {
       this.profissionais = await profissionalService.getAll();
+    },
+    async carregarEspecialidades() {
+      this.especialidades = await especialidadeService.getAll();
     },
     async salvarProfissional(profissional) {
       if (profissional.id) {
@@ -63,3 +80,6 @@ export default {
   }
 };
 </script>
+
+<style>
+</style>

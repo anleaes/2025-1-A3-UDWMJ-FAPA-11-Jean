@@ -52,4 +52,8 @@ button:nth-of-type(2) {
   background-color: #e74c3c; /* Vermelho para o Excluir */
   color: white;
 }
+
+li {
+  color: black;
+}
 </style>
