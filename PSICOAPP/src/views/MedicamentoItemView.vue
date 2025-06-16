@@ -1,7 +1,7 @@
 <template>
   <main>
     <section class="text-center mt-3">
-      <router-link to="/" class="btn-voltar">
+      <router-link to="/home" class="btn-voltar">
         ← Voltar para o Início
       </router-link>
     </section>

@@ -1,7 +1,7 @@
 <template>
   <main>
     <section class="text-center mt-3">
-      <router-link to="/" class="btn btn-primary">← Voltar para o Início</router-link>
+      <router-link to="/home" class="btn btn-primary">← Voltar para o Início</router-link>
     </section>
 
     <h1>Gerenciamento de Pacientes</h1>

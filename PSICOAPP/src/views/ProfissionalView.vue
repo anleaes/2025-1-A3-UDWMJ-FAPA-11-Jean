@@ -1,7 +1,7 @@
 <template>
   <main>
     <section>
-      <router-link to="/">← Voltar para o Início</router-link>
+      <router-link to="/home">← Voltar para o Início</router-link>
     </section>
 
     <h1>Gerenciamento de Profissionais</h1>
